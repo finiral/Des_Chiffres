@@ -1,0 +1,17 @@
+- API:
+    ☐ GameController
+        ☐ getSevenRandom (entre 1 et 100)
+        ☐ getRandomToFind (entre 1 et 1000)
+        ☐ decideStart(datas)
+        ☐ isCalculTrue(String calcul, int idJoueur)
+- Angular:  
+    ☐ component jeu-ui
+        ☐ div pour mettre chrono
+            ☐ afficher un timer qui s'update et configurable
+        ☐ div j1 et j2
+            ☐ input nombre
+            ☐ input valider
+        ☐ when click valider -> add to controller's player's attribute (j1 ou j2) the datas(chrono & nb choisi)
+        ☐ when chrono 00:00 , fetch to api's decideStart with data of j1 and j2
+            ☐ response arrive->add input text and button valider for combinaison
+            ☐ when valider->fetch to api's is calculTrue

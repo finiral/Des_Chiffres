@@ -10,10 +10,13 @@
             ✔ afficher un timer qui s'update et configurable @done (6/9/2024, 7:35:10 PM)
         ✔ div pour afficher le nb a chercher @done (6/9/2024, 8:24:41 PM)
         ✔ div pour afficher les 7 nombres @done (6/9/2024, 8:24:41 PM)
-        ☐ div j1 et j2
-            ☐ input nombre
-            ☐ input valider
-        ☐ when click valider -> add to controller's player's attribute (j1 ou j2) the datas(chrono & nb choisi)
+        ✔ div j1 et j2 @done (6/9/2024, 8:54:10 PM)
+            ✔ input nombre @done (6/9/2024, 8:54:10 PM)
+            ✔ input valider @done (6/9/2024, 8:54:10 PM)
+        ☐ when click valider :
+                ☐ make the input hidden
+                ☐ add to controller's player's attribute (j1 ou j2) the datas(chrono & nb choisi)
         ☐ when chrono 00:00 , fetch to api's decideStart with data of j1 and j2
-            ☐ response arrive->add input text and button valider for combinaison
-            ☐ when valider->fetch to api's is calculTrue
+            ☐ response arrive 
+                ☐ add input text and button valider for combinaison
+                    ☐ when valider->fetch to api's is calculTrue

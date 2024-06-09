@@ -9,7 +9,7 @@
         </div>
         <div class="buttons">
             <button id="startStop" ng-click="startGame()" ng-if="!gameLaunched">Start game</button>
-            <button id="reset" ng-click="stopGame()">Reset game</button>
+            <button id="reset" ng-click="stopGame()" ng-if="gameLaunched">Reset game</button>
         </div>
     </div>
     <div style="display:flex">
@@ -24,6 +24,18 @@
             <div class="cell-boxes">
                 <div class="digit-box" ng-repeat="cell in cells">{{cell}}</div>
             </div>
+        </div>
+    </div>
+    <div style="display:flex" ng-if="gameLaunched">
+        <div class="component">
+            <h2>Joueur 1</h2>
+            <input type="text">
+            <button>Valider</button>
+        </div>
+        <div class="component">
+            <h2>Joueur 2</h2>
+            <input type="text">
+            <button>Valider</button>
         </div>
     </div>
 </div>

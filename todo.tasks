@@ -5,7 +5,7 @@
         ☐ decideStart(datas)
         ☐ isCalculTrue(String calcul, int idJoueur)
 - Angular:  
-    ☐ component jeu-ui
+    ☐ component game-ui
         ☐ div pour mettre chrono
             ☐ afficher un timer qui s'update et configurable
         ☐ div j1 et j2

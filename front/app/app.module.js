@@ -1,6 +1,3 @@
-var app=angular.module("rallyeApp",[
-    "ngRoute",
-    "saisonsList",
-    "menuSaison",
-    "rallyeDetail"
+var app=angular.module("gameApp",[
+    "gameUi"
 ])

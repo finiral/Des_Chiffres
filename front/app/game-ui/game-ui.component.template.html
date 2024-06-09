@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="page-header">
+        <h1 class="align-end">Jeu de chiffre</h1>
+    </div>
+    <hr>
+    <div class="chrono">
+        <div id="display" class="display">
+            <span id="minutes">{{time}}</span>
+        </div>
+        <div class="buttons">
+            <button id="startStop" ng-click="startGame()" ng-if="!gameLaunched">Start game</button>
+            <button id="reset" ng-click="stopGame()">Reset game</button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>

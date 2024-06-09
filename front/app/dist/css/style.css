@@ -16,7 +16,8 @@ body {
     align-items: center;
 }
 
-.chrono {
+.component{
+    margin: 20px;
     background: #20232a;
     padding: 20px;
     border-radius: 10px;
@@ -46,4 +47,18 @@ body {
 
 .buttons button:focus {
     outline: none;
+}
+.digit-box {
+    font-size: 2rem;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #61dafb;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+.cell-boxes {
+    display: flex;
+    justify-content: space-around;
 }

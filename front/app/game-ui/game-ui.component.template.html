@@ -1,15 +1,29 @@
 <div class="container">
-    <div class="page-header">
-        <h1 class="align-end">Jeu de chiffre</h1>
+    <div class="page-header" ng-if="!gameLaunched">
+        <h1 class="align-end">Jeu de Chiffre</h1>
     </div>
     <hr>
-    <div class="chrono">
+    <div class="component">
         <div id="display" class="display">
             <span id="minutes">{{time}}</span>
         </div>
         <div class="buttons">
             <button id="startStop" ng-click="startGame()" ng-if="!gameLaunched">Start game</button>
             <button id="reset" ng-click="stopGame()">Reset game</button>
+        </div>
+    </div>
+    <div style="display:flex">
+        <div class="component" ng-if="gameLaunched">
+            <h2>Nombre a chercher</h2>
+            <div class="cell-boxes">
+                <div class="digit-box">{{singleDigit}}</div>
+            </div>
+        </div>
+        <div class="component" ng-if="gameLaunched">
+            <h2>Vos nombres</h2>
+            <div class="cell-boxes">
+                <div class="digit-box" ng-repeat="cell in cells">{{cell}}</div>
+            </div>
         </div>
     </div>
 </div>

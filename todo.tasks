@@ -6,8 +6,10 @@
         ☐ isCalculTrue(String calcul, int idJoueur)
 - Angular:  
     ☐ component game-ui
-        ☐ div pour mettre chrono
-            ☐ afficher un timer qui s'update et configurable
+        ✔ div pour mettre chrono @done (6/9/2024, 7:35:09 PM)
+            ✔ afficher un timer qui s'update et configurable @done (6/9/2024, 7:35:10 PM)
+        ✔ div pour afficher le nb a chercher @done (6/9/2024, 8:24:41 PM)
+        ✔ div pour afficher les 7 nombres @done (6/9/2024, 8:24:41 PM)
         ☐ div j1 et j2
             ☐ input nombre
             ☐ input valider

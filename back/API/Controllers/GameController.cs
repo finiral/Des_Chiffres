@@ -1,4 +1,5 @@
 using System.Data;
+using API.Objets;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -40,10 +41,13 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("verifCalcul")]
-        public bool IsCalculTrue(int nombre, string calcul, int idJoueur)
+        public bool IsCalculTrue([FromBody] Calculate c)
         {
-            string value = new DataTable().Compute(calcul, null).ToString();
-            if(nombre.Equals(int.Parse(value))){
+            if(!c.IsValid()){
+                return false;
+            }
+            string value = new DataTable().Compute(c.Calcul, null).ToString();
+            if(c.Nombre.Equals(int.Parse(value))){
                 return true;
             }
             return false;

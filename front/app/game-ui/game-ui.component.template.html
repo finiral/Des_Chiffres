@@ -29,13 +29,17 @@
     <div style="display:flex" ng-if="gameLaunched">
         <div class="component">
             <h2>Joueur 1</h2>
-            <input type="text">
-            <button>Valider</button>
+            <input type="number" ng-model="guess1" ng-if="!$ctrl.starts[1]" min="0">
+            <button ng-click="addPlayerData(1,guess1);$ctrl.clickBtn1=true" ng-if="!$ctrl.clickBtn1">Valider</button>
+            <input type="text" placeholder="COMBINAISON" ng-if="$ctrl.starts[1]">
+            <button ng-if="$ctrl.starts[1]">Valider</button>
         </div>
         <div class="component">
             <h2>Joueur 2</h2>
-            <input type="text">
-            <button>Valider</button>
+            <input type="number" ng-model="guess2" ng-if="!$ctrl.starts[2]" min="0">
+            <button ng-click="addPlayerData(2,guess2);$ctrl.clickBtn2=true" ng-if="!$ctrl.clickBtn2">Valider</button>
+            <input type="text" placeholder="COMBINAISON" ng-if="$ctrl.starts[2]">
+            <button ng-if="$ctrl.starts[2]">Valider</button>
         </div>
     </div>
 </div>

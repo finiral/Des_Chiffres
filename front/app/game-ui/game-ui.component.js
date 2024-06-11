@@ -1,13 +1,37 @@
 angular.module("gameUi", [])
     .component("gameUi", {
         templateUrl: "game-ui/game-ui.component.template.html",
-        controller: ["$scope", "$interval" ,"$http", function ($scope, $interval,$http) {
+        controller: ["$scope", "$interval", "$http", function ($scope, $interval, $http) {
             var self = this
             function initialize() {
+                self.playersData=[]
                 self.seconds = 60
+                self.clickBtn1=false
+                self.clickBtn2=false
+                self.starts=[]
                 $scope.time = getTimeLeftFormat(self.seconds)
             }
             initialize()
+
+            /* FONCTIONS */
+
+            $scope.addPlayerData=function(id,guess){
+                self.playersData.push({
+                    idPlayer:id,
+                    nb:$scope.singleDigit,
+                    nbGuess:guess,
+                    timeLeft:self.seconds
+                })
+                console.log(self.playersData)
+                /* Decider qui commence en premier */
+                if(self.playersData.length>=2){
+                    var body=JSON.stringify(self.playersData)
+                    $http.post(apiUrl + "/game/decideStart",body).
+                    then(function (response) {
+                        self.starts[response.data]=true
+                    })
+                }
+            }
             $scope.startGame = function () {
                 $scope.gameLaunched = true
                 $http.get(apiUrl + "/game/random").
@@ -28,13 +52,17 @@ angular.module("gameUi", [])
                 $interval.cancel(self.interval)
                 initialize()
             }
-            /* $http({
-                url:"/game/verifCalcul",
-                method:'POST',
-                data:{
-                    nombre: ,
-                    calcul: ""
-                }
-            }) */
+            $scope.sendModel = function (calc) {
+                var body = JSON.stringify({
+                    nombre: $scope.singleDigit,
+                    calcul: calc,
+                    nbs: $scope.cells
+                })
+                $http.post(apiUrl + "/game/verifCalcul", body)
+                    .then(function (response) {
+                    console.log(response.data)
+                })
+            }
+            
         }]
     })

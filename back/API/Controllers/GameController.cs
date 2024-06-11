@@ -43,14 +43,50 @@ namespace API.Controllers
         [Route("verifCalcul")]
         public bool IsCalculTrue([FromBody] Calculate c)
         {
-            if(!c.IsValid()){
+            if (!c.IsValid())
+            {
                 return false;
             }
             string value = new DataTable().Compute(c.Calcul, null).ToString();
-            if(c.Nombre.Equals(int.Parse(value))){
+            if (c.Nombre.Equals(int.Parse(value)))
+            {
                 return true;
             }
             return false;
+        }
+
+        [HttpPost]
+        [Route("decideStart")]
+        public int DecideStart([FromBody] PlayerData[] datas)
+        {
+            int res = -1;
+            if (datas[0].NbGuess == datas[1].NbGuess)
+            {
+                int temps = -1;
+                foreach (PlayerData data in datas)
+                {
+                    if (data.TimeLeft > temps)
+                    {
+                        res = data.IdPlayer;
+                        temps = data.TimeLeft;
+                    }
+                }
+
+            }
+            else
+            {
+                int diff = int.MaxValue;
+                foreach (PlayerData data in datas)
+                {
+                    if (Math.Abs(data.Nb - data.NbGuess) < diff)
+                    {
+                        res = data.IdPlayer;
+                        diff = Math.Abs(data.Nb - data.NbGuess);
+                    }
+                }
+
+            }
+            return res;
         }
     }
 }

@@ -39,6 +39,10 @@ namespace API.Objets
         }
         public bool IsValid()
         {
+            /// Verifier que l'expression soit arithmetique
+            if(!ArithmeticExpressionValidator.IsValidArithmeticExpression(this.Calcul)){
+                return false;
+            }
             // Extract numbers from the input string
             List<int> lsNb = ExtractNumbers(this.Calcul);
 

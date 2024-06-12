@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="page-header" ng-if="!gameLaunched">
+    <div class="page-header" ng-if="!$ctrl.gameLaunched">
         <h1 class="align-end">Jeu de Chiffre</h1>
     </div>
     <hr>
@@ -8,38 +8,38 @@
             <span id="minutes">{{time}}</span>
         </div>
         <div class="buttons">
-            <button id="startStop" ng-click="startGame()" ng-if="!gameLaunched">Start game</button>
-            <button id="reset" ng-click="stopGame()" ng-if="gameLaunched">Reset game</button>
+            <button id="startStop" ng-click="startGame()" ng-if="!$ctrl.gameLaunched">Start game</button>
+            <button id="reset" ng-click="stopGame()" ng-if="$ctrl.gameLaunched">Reset game</button>
         </div>
     </div>
     <div style="display:flex">
-        <div class="component" ng-if="gameLaunched">
+        <div class="component" ng-if="$ctrl.gameLaunched">
             <h2>Nombre a chercher</h2>
             <div class="cell-boxes">
-                <div class="digit-box">{{singleDigit}}</div>
+                <div class="digit-box">{{$ctrl.singleDigit}}</div>
             </div>
         </div>
-        <div class="component" ng-if="gameLaunched">
+        <div class="component" ng-if="$ctrl.gameLaunched">
             <h2>Vos nombres</h2>
             <div class="cell-boxes">
-                <div class="digit-box" ng-repeat="cell in cells">{{cell}}</div>
+                <div class="digit-box" ng-repeat="cell in $ctrl.cells">{{cell}}</div>
             </div>
         </div>
     </div>
-    <div style="display:flex" ng-if="gameLaunched">
+    <div style="display:flex" ng-if="$ctrl.gameLaunched">
         <div class="component">
             <h2>Joueur 1</h2>
-            <input type="number" ng-model="guess1" ng-if="!$ctrl.starts[1]" min="0">
-            <button ng-click="addPlayerData(1,guess1);$ctrl.clickBtn1=true" ng-if="!$ctrl.clickBtn1">Valider</button>
-            <input type="text" placeholder="COMBINAISON" ng-if="$ctrl.starts[1]">
-            <button ng-if="$ctrl.starts[1]">Valider</button>
+            <input type="number" ng-if="!$ctrl.starts[1]" ng-model="$ctrl.guess1">
+            <button ng-click="addPlayerData(1,$ctrl.guess1)" ng-if="!$ctrl.clickBtn[1]">Valider</button>
+            <input type="text" ng-model="$ctrl.calcul1" placeholder="Entrez votre combinaison" ng-if="$ctrl.starts[1]">
+            <button ng-if="$ctrl.starts[1]" ng-click="sendCalcul($ctrl.calcul1)">Valider</button>
         </div>
         <div class="component">
             <h2>Joueur 2</h2>
-            <input type="number" ng-model="guess2" ng-if="!$ctrl.starts[2]" min="0">
-            <button ng-click="addPlayerData(2,guess2);$ctrl.clickBtn2=true" ng-if="!$ctrl.clickBtn2">Valider</button>
-            <input type="text" placeholder="COMBINAISON" ng-if="$ctrl.starts[2]">
-            <button ng-if="$ctrl.starts[2]">Valider</button>
+            <input type="number" ng-model="$ctrl.guess2" ng-if="!$ctrl.starts[2]" min="0">
+            <button ng-click="addPlayerData(2,$ctrl.guess2)" ng-if="!$ctrl.clickBtn[2]">Valider</button>
+            <input type="text" ng-model="$ctrl.calcul2" placeholder="Entrez votre combinaison" ng-if="$ctrl.starts[2]">
+            <button ng-if="$ctrl.starts[2]" ng-click="sendCalcul($ctrl.calcul2)">Valider</button>
         </div>
     </div>
 </div>

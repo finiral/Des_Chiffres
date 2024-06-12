@@ -6,9 +6,11 @@ angular.module("gameUi", [])
             function initialize() {
                 self.playersData=[]
                 self.seconds = 60
-                self.clickBtn1=false
-                self.clickBtn2=false
+                self.singleDigit=null
+                self.cells=[]
+                self.clickBtn=[]
                 self.starts=[]
+                self.gameLaunched=false
                 $scope.time = getTimeLeftFormat(self.seconds)
             }
             initialize()
@@ -16,9 +18,10 @@ angular.module("gameUi", [])
             /* FONCTIONS */
 
             $scope.addPlayerData=function(id,guess){
+                self.clickBtn[id]=true
                 self.playersData.push({
                     idPlayer:id,
-                    nb:$scope.singleDigit,
+                    nb:self.singleDigit,
                     nbGuess:guess,
                     timeLeft:self.seconds
                 })
@@ -33,14 +36,14 @@ angular.module("gameUi", [])
                 }
             }
             $scope.startGame = function () {
-                $scope.gameLaunched = true
+                self.gameLaunched = true
                 $http.get(apiUrl + "/game/random").
                     then(function (response) {
-                        $scope.singleDigit = response.data
+                        self.singleDigit = response.data
                     })
                 $http.get(apiUrl + "/game/randoms").
                     then(function (response) {
-                        $scope.cells = response.data
+                        self.cells = response.data
                     })
                 self.interval = $interval(function () {
                     self.seconds = self.seconds - 1
@@ -48,19 +51,19 @@ angular.module("gameUi", [])
                 }, 1000)
             }
             $scope.stopGame = function () {
-                $scope.gameLaunched = false
+                self.gameLaunched = false
                 $interval.cancel(self.interval)
                 initialize()
             }
-            $scope.sendModel = function (calc) {
+            $scope.sendCalcul = function (calc) {
                 var body = JSON.stringify({
-                    nombre: $scope.singleDigit,
+                    nombre: self.singleDigit,
                     calcul: calc,
-                    nbs: $scope.cells
+                    nbs: self.cells
                 })
                 $http.post(apiUrl + "/game/verifCalcul", body)
                     .then(function (response) {
-                    console.log(response.data)
+                    window.alert("Validité de la combinaison : "+response.data)
                 })
             }
             

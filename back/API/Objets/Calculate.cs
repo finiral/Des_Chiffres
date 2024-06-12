@@ -8,21 +8,24 @@ namespace API.Objets
         private string calcul;
 
         private List<int> nbs;
+        private int id;
 
         public Calculate()
         {
         }
 
-        public Calculate(int nombre, string calcul, List<int> nbs)
+        public Calculate(int nombre, string calcul, List<int> nbs, int id)
         {
             Nombre = nombre;
             Calcul = calcul;
             Nbs = nbs;
+            Id = id;
         }
-
+        public int Id { get => id; set => id = value; }
         public int Nombre { get => nombre; set => nombre = value; }
         public string Calcul { get => calcul; set => calcul = value; }
         public List<int> Nbs { get => nbs; set => nbs = value; }
+        
 
         public static List<int> ExtractNumbers(string input)
         {

@@ -15,15 +15,11 @@
             ✔ input valider @done (6/9/2024, 8:54:10 PM)
         ✔ when click start game @done (6/11/2024, 9:35:15 PM)
             ✔ fetch to api's getSevenRandom and getRandomToFind @done (6/11/2024, 9:32:48 AM)
-        ☐ when click valider :
+        ✔ when click valider : @done (6/12/2024, 8:47:03 PM)
                 ✔ make the button hidden @done (6/11/2024, 10:05:39 PM)
                 ✔ add to controller's player's attribute (j1 ou j2) the datas(chrono & nb choisi) @done (6/11/2024, 9:35:48 PM)
                 ✔ if both player valider , fetch to api's decidestart @done (6/11/2024, 10:46:58 PM)
                     ✔ add input text and button valider for combinaison @done (6/11/2024, 10:47:42 PM)
-                        ☐ when valider->fetch to api's is calculTrue
-        ☐ when chrono 00:00 , 
-            ☐ arreter l'interval
-            ☐ fetch to api's decideStart with data of j1 and j2
-            ☐ response arrive 
-                ☐ add input text and button valider for combinaison
-                    ☐ when valider->fetch to api's is calculTrue
+                        ✔ when valider->fetch to api's is calculTrue @done (6/12/2024, 8:47:01 PM)
+        ✔ when chrono 00:00 , @done (6/12/2024, 9:10:04 PM)
+            ✔ arreter l'interval @done (6/12/2024, 9:10:05 PM)

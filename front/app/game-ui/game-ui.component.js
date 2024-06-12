@@ -59,7 +59,7 @@ angular.module("gameUi", [])
                         if (self.playersData.length == 0) {
                             window.alert("Personne gagne")
                         }
-                        else if (self.playersData == 1) {
+                        else if (self.playersData.length == 1) {
                             window.alert("Le joueur " + self.playersData[0].idPlayer + " gagne")
                         }
                         $scope.stopGame()

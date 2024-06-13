@@ -11,16 +11,23 @@ angular.module("gameUi", [])
                 self.cells = []
                 self.clickBtn = []
                 self.starts = []
-                self.guess1=''
-                self.guess2=''
-                self.calcul1=''
-                self.calcul2=''
+                self.guess1 = ''
+                self.guess2 = ''
+                self.calcul1 = ''
+                self.calcul2 = ''
                 self.time = getTimeLeftFormat(self.seconds)
             }
             initialize()
 
             /* FONCTIONS */
 
+            $scope.decideStart = function () {
+                var body = JSON.stringify(self.playersData)
+                $http.post(apiUrl + "/game/decideStart", body).
+                    then(function (response) {
+                        self.starts[response.data] = true
+                    })
+            }
             $scope.addPlayerData = function (id, guess) {
                 self.clickBtn[id] = true
                 self.playersData.push({
@@ -33,11 +40,7 @@ angular.module("gameUi", [])
                 /* Decider qui commence en premier */
                 if (self.playersData.length >= 2) {
                     $interval.cancel(self.interval)
-                    var body = JSON.stringify(self.playersData)
-                    $http.post(apiUrl + "/game/decideStart", body).
-                        then(function (response) {
-                            self.starts[response.data] = true
-                        })
+                    $scope.decideStart()
                 }
             }
             $scope.startGame = function () {
@@ -58,11 +61,12 @@ angular.module("gameUi", [])
                         $interval.cancel(self.interval)
                         if (self.playersData.length == 0) {
                             window.alert("Personne gagne")
+                            $scope.stopGame()
                         }
                         else if (self.playersData.length == 1) {
-                            window.alert("Le joueur " + self.playersData[0].idPlayer + " gagne")
+                            $scope.decideStart()
+                            /* window.alert("Le joueur " + self.playersData[0].idPlayer + " gagne") */
                         }
-                        $scope.stopGame()
                     }
                 }, 1000)
             }
@@ -71,7 +75,7 @@ angular.module("gameUi", [])
                 $interval.cancel(self.interval)
                 initialize()
             }
-            $scope.sendCalcul = function (idplayer,guess, calc) {
+            $scope.sendCalcul = function (idplayer, guess, calc) {
                 var body = JSON.stringify({
                     id: idplayer,
                     nombre: guess,

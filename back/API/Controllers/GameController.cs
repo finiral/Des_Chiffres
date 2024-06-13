@@ -60,6 +60,10 @@ namespace API.Controllers
         [Route("decideStart")]
         public int DecideStart([FromBody] PlayerData[] datas)
         {
+            /* SI le tableau ne contient qu'un joueur */
+            if(datas.Length == 1){
+                return datas[0].IdPlayer;
+            }
             int res = -1;
             if (datas[0].NbGuess == datas[1].NbGuess)
             {

@@ -44,31 +44,50 @@ angular.module("gameUi", [])
                 }
             }
             $scope.startGame = function () {
-                self.gameLaunched = true
-                $http.get(apiUrl + "/game/random").
-                    then(function (response) {
-                        self.singleDigit = response.data
-                    })
-                $http.get(apiUrl + "/game/randoms").
-                    then(function (response) {
-                        self.cells = response.data
-                    })
-                self.interval = $interval(function () {
-                    self.seconds = self.seconds - 1
-                    self.time = getTimeLeftFormat(self.seconds)
-                    /* Quand le chrono est terminé */
-                    if (self.seconds == 0) {
-                        $interval.cancel(self.interval)
-                        if (self.playersData.length == 0) {
-                            window.alert("Personne gagne")
-                            $scope.stopGame()
-                        }
-                        else if (self.playersData.length == 1) {
-                            $scope.decideStart()
-                            /* window.alert("Le joueur " + self.playersData[0].idPlayer + " gagne") */
-                        }
+                var isValid = true
+                if (!(self.singleDigit <= 1000 && self.singleDigit > 0)) {
+                    window.alert("Nombre a chercher invalide")
+                    isValid = false
+                }
+                if(self.cells.length<7){
+                    window.alert("Certaines cases sont vides")
+                    isValid=false
+                }
+                for (var i = 0; i < self.cells.length; i++) {
+                    if (!(self.cells[i] <= 100 && self.cells[i] > 0)) {
+                        var numero = i + 1
+                        window.alert("Nombre numero " + numero + " invalide")
+                        isValid = false
                     }
-                }, 1000)
+                }
+                if (isValid) {
+                    self.gameLaunched = true
+                    /* $http.get(apiUrl + "/game/random").
+                        then(function (response) {
+                            self.singleDigit = response.data
+                        })
+                    $http.get(apiUrl + "/game/randoms").
+                        then(function (response) {
+                            self.cells = response.data
+                        }) */
+                    self.interval = $interval(function () {
+                        self.seconds = self.seconds - 1
+                        self.time = getTimeLeftFormat(self.seconds)
+                        /* Quand le chrono est terminé */
+                        if (self.seconds == 0) {
+                            $interval.cancel(self.interval)
+                            if (self.playersData.length == 0) {
+                                window.alert("Personne gagne")
+                                $scope.stopGame()
+                            }
+                            else if (self.playersData.length == 1) {
+                                $scope.decideStart()
+                                /* window.alert("Le joueur " + self.playersData[0].idPlayer + " gagne") */
+                            }
+                        }
+                    }, 1000)
+
+                }
             }
             $scope.stopGame = function () {
                 self.gameLaunched = false

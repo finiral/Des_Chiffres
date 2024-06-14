@@ -1,8 +1,22 @@
 <div class="container">
     <div class="page-header" ng-if="!$ctrl.gameLaunched">
-        <h1 class="align-end">Jeu de Chiffre</h1>
+        <h1 class="align-end" style="color: aliceblue;">game of 🔢</h1>
     </div>
     <hr>
+    <div class="component" ng-if="!$ctrl.gameLaunched">
+        <label for="">Les septs nombres</label>
+        <br>
+        <input class="test" type="number" ng-model="$ctrl.cells[0]">
+        <input class="test" type="number" ng-model="$ctrl.cells[1]">
+        <input class="test" type="number" ng-model="$ctrl.cells[2]">
+        <input class="test" type="number" ng-model="$ctrl.cells[3]">
+        <input class="test" type="number" ng-model="$ctrl.cells[4]">
+        <input class="test" type="number" ng-model="$ctrl.cells[5]">
+        <input class="test" type="number" ng-model="$ctrl.cells[6]">
+        <br>
+        <label for="">Nb a chercher</label>
+        <input class="test" type="number" ng-model="$ctrl.singleDigit">
+    </div>
     <div class="component">
         <div id="display" class="display">
             <span id="minutes">{{$ctrl.time}}</span>
